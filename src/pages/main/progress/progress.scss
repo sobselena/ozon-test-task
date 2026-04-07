@@ -3,3 +3,13 @@
   flex-direction: column;
   gap: 6px;
 }
+
+.progress-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+
+  background: conic-gradient(blue 0% 60%, gray 60% 100%);
+
+  mask: radial-gradient(circle 55px, transparent 45px, black 46px);
+}

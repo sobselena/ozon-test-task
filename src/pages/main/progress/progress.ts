@@ -15,12 +15,16 @@ export class Progress extends Component {
       classes: ['progress__title'],
       text: 'Progress',
     });
+    const circleComponent = new Component({
+      tag: 'div',
+      classes: ['progress-circle'],
+    });
     const parametersContainer = new Component({
       tag: 'div',
       classes: ['params'],
     });
     const parametersComponents = parameters.map(parameterProps => new Parameter(parameterProps));
     parametersContainer.appendChildren(parametersComponents);
-    this.appendChildren([progressTitle, parametersContainer]);
+    this.appendChildren([progressTitle, circleComponent, parametersContainer]);
   }
 }
