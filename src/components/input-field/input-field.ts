@@ -6,11 +6,13 @@ type Props = {
   value?: string;
   type?: string;
   onKeyUp?: (event: Event) => void;
+  min?: string;
+  max?: string;
 };
 
 export class InputField extends Component {
   private onKeyUp?: (event: Event) => void;
-  constructor({ classes, placeholder, value, type, onKeyUp }: Props) {
+  constructor({ classes, placeholder, value, type, onKeyUp, min, max }: Props) {
     super({ tag: 'input', classes });
     if (placeholder) {
       this.setPlaceholder(placeholder);
@@ -23,6 +25,14 @@ export class InputField extends Component {
     }
     if (onKeyUp) {
       this.addKeyUpEvent(onKeyUp);
+    }
+
+    if (min) {
+      this.setAttribute('min', min);
+    }
+
+    if (max) {
+      this.setAttribute('max', max);
     }
   }
 

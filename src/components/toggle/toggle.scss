@@ -1,31 +1,36 @@
 .params__toggle {
+  width: 62px;
+  height: 30px;
+
+  background: lightgray;
+  border-radius: 999px;
+
   position: relative;
-  width: 44px;
-  height: 24px;
-  border-radius: 100px;
-  background-color: gray;
-  border: none;
   cursor: pointer;
-  transition: background-color 0.25s ease;
-  padding: 0;
+
+  transition: background 0.3s ease;
 }
 
-.params__toggle::before {
+.params__toggle::after {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
+
+  top: 3px;
+  left: 3px;
+
+  width: 24px;
+  height: 24px;
+
+  background: white;
   border-radius: 50%;
-  background-color: white;
-  transition: transform 0.25s ease;
+
+  transition: transform 0.15s ease;
 }
 
 .params__toggle.active {
-  background-color: blue;
+  background: blue;
 }
 
-.params__toggle.active::before {
-  transform: translateX(20px);
+.params__toggle.active::after {
+  transform: translateX(32px);
 }

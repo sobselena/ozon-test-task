@@ -1,5 +1,39 @@
-.params {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.progress {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  align-content: start;
+  justify-items: center;
+
+  width: 320px;
+  height: 538px;
+  margin: 15px;
+}
+
+.progress__title {
+  align-self: start;
+  justify-self: start;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+
+@media (orientation: landscape) {
+  .progress {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    align-content: start;
+    justify-items: start;
+
+    width: 568px;
+    height: 290px;
+  }
+
+  .progress__title {
+    grid-column: 1 / -1;
+    margin-bottom: 40px;
+  }
+
+  .params {
+    width: 150px;
+  }
 }

@@ -21,12 +21,14 @@ export class Component {
       this.appendChildren(children);
     }
   }
+
   appendChildren(children: Component[]) {
     children.forEach(child => {
       this.node.append(child.getNode());
       this.allChildren.push(child);
     });
   }
+
   destroy() {
     this.node.remove();
     this.deleteChildren();
@@ -48,6 +50,7 @@ export class Component {
     this.allChildren[childIndex].destroy();
     this.allChildren.splice(childIndex, 1);
   }
+
   deleteChildren() {
     this.allChildren.forEach(child => {
       child.destroy();
@@ -55,6 +58,7 @@ export class Component {
 
     this.allChildren = [];
   }
+
   getNode() {
     return this.node;
   }

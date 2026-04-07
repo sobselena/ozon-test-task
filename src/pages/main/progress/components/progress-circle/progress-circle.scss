@@ -1,14 +1,16 @@
 .progress-circle {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
+
   border-radius: 50%;
   --progress: 0;
 
-  background: conic-gradient(blue 0% var(--progress), gray var(--progress) 100%);
+  background: conic-gradient(blue 0% var(--progress), lightgray var(--progress) 100%);
 
-  mask: radial-gradient(circle 55px, transparent 45px, black 46px);
+  mask: radial-gradient(circle 70px, transparent 66px, black 67px);
 
-  transition: background 0.3s ease;
+  transition: all 0.3s;
+  margin-bottom: 80px;
 }
 
 .progress-circle.animated {
@@ -16,7 +18,15 @@
 }
 
 .progress-circle.hidden {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+@media (orientation: landscape) {
+  .progress-circle {
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: 40px;
+  }
 }
 
 @keyframes rotate {

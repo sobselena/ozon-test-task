@@ -6,6 +6,7 @@ import './parameter.scss';
 
 export class Parameter extends Component {
   private parametersProps: ParametersType;
+
   constructor(props: ParametersType) {
     super({ tag: 'div', classes: ['params__item'] });
     this.parametersProps = props;
@@ -14,7 +15,11 @@ export class Parameter extends Component {
 
   configureView() {
     const interactionComponent = this.createInteractionComponent();
-    const labelComponent = new Component({ tag: 'span', text: this.parametersProps.label });
+    const labelComponent = new Component({
+      tag: 'span',
+      text: this.parametersProps.label,
+      classes: ['params__label'],
+    });
     if (interactionComponent) {
       this.appendChildren([interactionComponent, labelComponent]);
     }
@@ -34,11 +39,15 @@ export class Parameter extends Component {
 
   createInputField() {
     const { stateValue } = this.parametersProps;
+
     const component = new InputField({
       classes: ['params__input'],
       type: 'number',
       value: stateValue.toString(),
+      min: '0',
+      max: '100',
     });
+
     component.addListener('input', (event: Event) => {
       const value = Number((event.target as HTMLInputElement).value);
       if (!isNaN(value)) {
