@@ -1,6 +1,7 @@
 import { Component } from '../../utils';
 import './toggle.scss';
-type ToggleProps = {
+
+type Props = {
   classes: string[];
   isActive: boolean;
 };
@@ -8,7 +9,7 @@ type ToggleProps = {
 export class Toggle extends Component {
   private isActive;
 
-  constructor({ classes, isActive = false }: ToggleProps) {
+  constructor({ classes, isActive = false }: Props) {
     super({ tag: 'div', classes });
     this.isActive = isActive;
     this.addListener('click', this.toggle.bind(this));

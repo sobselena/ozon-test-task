@@ -1,15 +1,15 @@
-interface ComponentProperties {
+type Props = {
   tag: keyof HTMLElementTagNameMap;
   classes?: string[];
   text?: string;
-}
+};
 
 export class Component {
   private node: HTMLElement;
 
   private allChildren: Component[] = [];
 
-  constructor({ tag, classes = [], text = '' }: ComponentProperties, ...children: Component[]) {
+  constructor({ tag, classes = [], text = '' }: Props, ...children: Component[]) {
     this.node = document.createElement(tag);
 
     this.setText(text);

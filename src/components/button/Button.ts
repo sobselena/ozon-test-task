@@ -1,6 +1,6 @@
 import { Component } from '../../utils';
 
-type ButtonProperties = {
+type Props = {
   classes: string[];
   text?: string;
   onClick?: EventListener;
@@ -8,7 +8,7 @@ type ButtonProperties = {
 export class Button extends Component {
   private onClick?: EventListener;
 
-  constructor({ classes, text, onClick }: ButtonProperties) {
+  constructor({ classes, text, onClick }: Props) {
     super({ tag: 'button', classes, text });
 
     if (onClick) {

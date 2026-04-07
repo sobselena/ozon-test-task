@@ -1,6 +1,6 @@
 import { Component } from '../../utils';
 
-type InputFieldProperties = {
+type Props = {
   classes: string[];
   placeholder?: string;
   value?: string;
@@ -10,7 +10,7 @@ type InputFieldProperties = {
 
 export class InputField extends Component {
   private onKeyUp?: (event: Event) => void;
-  constructor({ classes, placeholder, value, type, onKeyUp }: InputFieldProperties) {
+  constructor({ classes, placeholder, value, type, onKeyUp }: Props) {
     super({ tag: 'input', classes });
     if (placeholder) {
       this.setPlaceholder(placeholder);

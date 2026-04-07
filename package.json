@@ -11,6 +11,7 @@
     "ci:format": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "lint:style": "stylelint \"src/**/*.{css,scss}\" --fix",
     "prepare": "husky",
     "style": "sass -w src/app/styles/index.scss src/app/styles/index.css"
   },
@@ -33,6 +34,8 @@
     "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "sass-embedded": "^1.97.3",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard": "^40.0.0",
     "typescript-eslint": "^8.53.1",
     "vite": "^7.3.1"
   },
