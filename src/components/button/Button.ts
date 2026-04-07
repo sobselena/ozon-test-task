@@ -1,5 +1,4 @@
-import { Component } from '../../utils/Component';
-import './button.scss';
+import { Component } from '../../utils';
 
 type ButtonProperties = {
   classes: string[];

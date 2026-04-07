@@ -1,12 +1,10 @@
-import { Component } from '../utils/Component';
+import { Progress } from '../pages/main/progress/progress';
+import { Component } from '../utils/component';
 
 export class App {
   private wrapper: Component;
   constructor() {
-    this.wrapper = new Component(
-      { tag: 'div', classes: ['wrapper'] },
-      new Component({ tag: 'main', classes: ['main'], text: 'main' })
-    );
+    this.wrapper = new Component({ tag: 'div', classes: ['wrapper'] }, new Progress());
   }
 
   render() {

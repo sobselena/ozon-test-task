@@ -1,5 +1,4 @@
-import { Component } from '../../utils/Component';
-import './input-field.scss';
+import { Component } from '../../utils';
 
 type InputFieldProperties = {
   classes: string[];
