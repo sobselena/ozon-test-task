@@ -3,15 +3,18 @@ import { Component } from '../../../utils';
 import './progress.scss';
 import { parameters } from './constants/parameters';
 import type { ProgressState } from './types';
+import { ProgressCircle } from './components/progress-circle';
 
 export class Progress extends Component {
   state: ProgressState = {
-    value: 70,
-    animate: false,
-    hide: false,
+    value: 80,
+    animate: true,
+    hide: true,
   };
+  private circleComponent: ProgressCircle;
   constructor() {
     super({ tag: 'main', classes: ['progress'] });
+    this.circleComponent = new ProgressCircle({ progress: this.state.value });
     this.configureView();
   }
 
@@ -21,10 +24,7 @@ export class Progress extends Component {
       classes: ['progress__title'],
       text: 'Progress',
     });
-    const circleComponent = new Component({
-      tag: 'div',
-      classes: ['progress-circle'],
-    });
+
     const parametersContainer = new Component({
       tag: 'div',
       classes: ['params'],
@@ -35,10 +35,11 @@ export class Progress extends Component {
           ...parameterProps,
           onAction: value => this.handleAction(parameterProps.value, value),
           stateValue: this.state[parameterProps.value],
+          circle: this.circleComponent,
         })
     );
     parametersContainer.appendChildren(parametersComponents);
-    this.appendChildren([progressTitle, circleComponent, parametersContainer]);
+    this.appendChildren([progressTitle, this.circleComponent, parametersContainer]);
   }
   handleAction<K extends keyof ProgressState>(key: K, value: ProgressState[K]): void {
     this.state[key] = value;
