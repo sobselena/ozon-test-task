@@ -9,6 +9,13 @@ export class ProgressCircle extends Component {
     super({ tag: 'div', classes: ['progress-circle'] });
     this.updateProgressCircle(progress);
   }
+  setAnimated(isAnimated: boolean) {
+    this.getNode().classList.toggle('animated', isAnimated);
+  }
+
+  setHidden(isHidden: boolean) {
+    this.getNode().classList.toggle('hidden', isHidden);
+  }
 
   updateProgressCircle(progress: number) {
     const start = parseFloat(this.getNode().style.getPropertyValue('--progress')) || 0;

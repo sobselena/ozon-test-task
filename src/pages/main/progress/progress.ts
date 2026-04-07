@@ -11,6 +11,7 @@ export class Progress extends Component {
     animate: false,
     hide: false,
   };
+
   private circleComponent: ProgressCircle;
   constructor() {
     super({ tag: 'main', classes: ['progress'] });
@@ -29,19 +30,33 @@ export class Progress extends Component {
       tag: 'div',
       classes: ['params'],
     });
+
     const parametersComponents = parameters.map(
       parameterProps =>
         new Parameter({
           ...parameterProps,
           onAction: value => this.handleAction(parameterProps.value, value),
           stateValue: this.state[parameterProps.value],
-          circle: this.circleComponent,
         })
     );
+
     parametersContainer.appendChildren(parametersComponents);
     this.appendChildren([progressTitle, this.circleComponent, parametersContainer]);
   }
+
   handleAction<K extends keyof ProgressState>(key: K, value: ProgressState[K]): void {
     this.state[key] = value;
+
+    if (key === 'value') {
+      this.circleComponent.updateProgressCircle(value as number);
+    }
+
+    if (key === 'animate') {
+      this.circleComponent.setAnimated(value as boolean);
+    }
+
+    if (key === 'hide') {
+      this.circleComponent.setHidden(value as boolean);
+    }
   }
 }

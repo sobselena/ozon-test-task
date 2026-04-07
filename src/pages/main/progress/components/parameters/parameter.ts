@@ -3,17 +3,10 @@ import { Component } from '../../../../../utils';
 import { InputField } from '../../../../../components/input-field';
 import { Toggle } from '../../../../../components/toggle';
 import './parameter.scss';
-import type { ProgressCircle } from '../progress-circle';
 
 export class Parameter extends Component {
-  private parametersProps: ParametersType & {
-    circle: ProgressCircle;
-  };
-  constructor(
-    props: ParametersType & {
-      circle: ProgressCircle;
-    }
-  ) {
+  private parametersProps: ParametersType;
+  constructor(props: ParametersType) {
     super({ tag: 'div', classes: ['params__item'] });
     this.parametersProps = props;
     this.configureView();
@@ -28,31 +21,43 @@ export class Parameter extends Component {
   }
 
   createInteractionComponent() {
-    const { stateValue, type, onAction } = this.parametersProps;
+    const { type } = this.parametersProps;
     let component;
     if (type === 'input') {
-      component = new InputField({
-        classes: ['params__input'],
-        type: 'number',
-        value: stateValue.toString(),
-      });
-      component.addListener('input', (event: Event) => {
-        const value = Number((event.target as HTMLInputElement).value);
-        if (!isNaN(value)) {
-          this.parametersProps.stateValue = value;
-          this.parametersProps.circle.updateProgressCircle(this.parametersProps.stateValue);
-          this.parametersProps.onAction(this.parametersProps.stateValue);
-        }
-      });
+      component = this.createInputField();
     } else if (type === 'toggle') {
-      component = new Toggle({ classes: ['params__toggle'], isActive: stateValue as boolean });
-
-      component.addListener('click', () => {
-        this.parametersProps.stateValue = !this.parametersProps.stateValue;
-        onAction(this.parametersProps.stateValue);
-      });
+      component = this.createToggleBtn();
     }
 
+    return component;
+  }
+
+  createInputField() {
+    const { stateValue } = this.parametersProps;
+    const component = new InputField({
+      classes: ['params__input'],
+      type: 'number',
+      value: stateValue.toString(),
+    });
+    component.addListener('input', (event: Event) => {
+      const value = Number((event.target as HTMLInputElement).value);
+      if (!isNaN(value)) {
+        this.parametersProps.stateValue = value;
+        this.parametersProps.onAction(value);
+      }
+    });
+    return component;
+  }
+
+  createToggleBtn() {
+    const { stateValue } = this.parametersProps;
+    const component = new Toggle({ classes: ['params__toggle'], isActive: stateValue as boolean });
+
+    component.addListener('click', () => {
+      const newValue = !(this.parametersProps.stateValue as boolean);
+      this.parametersProps.onAction(newValue);
+      this.parametersProps.stateValue = newValue;
+    });
     return component;
   }
 }
