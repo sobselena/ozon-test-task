@@ -7,9 +7,9 @@ import { ProgressCircle } from './components/progress-circle';
 
 export class Progress extends Component {
   state: ProgressState = {
-    value: 80,
-    animate: true,
-    hide: true,
+    value: 60,
+    animate: false,
+    hide: false,
   };
   private circleComponent: ProgressCircle;
   constructor() {
