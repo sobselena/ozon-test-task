@@ -13,7 +13,8 @@
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
     "lint:style": "stylelint \"src/**/*.{css,scss}\" --fix",
     "prepare": "husky",
-    "style": "sass -w src/app/styles/index.scss src/app/styles/index.css"
+    "style": "sass -w src/app/styles/index.scss src/app/styles/index.css",
+    "deploy": "gh-pages -d dist"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -26,18 +27,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@types/node": "^25.0.10",
+    "@types/node": "^25.5.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-unicorn": "^62.0.0",
+    "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "sass-embedded": "^1.97.3",
     "stylelint": "^17.6.0",
     "stylelint-config-standard": "^40.0.0",
     "typescript-eslint": "^8.53.1",
-    "vite": "^7.3.1"
+    "vite": "^7.3.2"
   },
   "dependencies": {
     "acorn": "^8.15.0",
