@@ -1,7 +1,7 @@
 import { Parameter } from './components/parameters';
 import { Component } from '../../../utils';
 import './progress.scss';
-import { parameters } from './constants/parameters';
+import { MAX_VALUE, MIN_VALUE, parameters } from './constants/parameters';
 import type { ProgressState } from './types';
 import { ProgressCircle } from './components/progress-circle';
 
@@ -35,7 +35,7 @@ export class Progress extends Component {
       parameterProps =>
         new Parameter({
           ...parameterProps,
-          onAction: value => this.handleAction(parameterProps.value, value),
+          onAction: valueData => this.handleAction(parameterProps.value, valueData),
           stateValue: this.state[parameterProps.value],
         })
     );
@@ -45,18 +45,18 @@ export class Progress extends Component {
   }
 
   handleAction<K extends keyof ProgressState>(key: K, value: ProgressState[K]): void {
-    this.state[key] = value;
+    let result = value;
 
     if (key === 'value') {
-      this.circleComponent.updateProgressCircle(value as number);
-    }
-
-    if (key === 'animate') {
+      const normalizedValue = Math.max(MIN_VALUE, Math.min(MAX_VALUE, value as number));
+      result = normalizedValue as ProgressState[K];
+      this.circleComponent.updateProgressCircle(normalizedValue);
+    } else if (key === 'animate') {
       this.circleComponent.setAnimated(value as boolean);
-    }
-
-    if (key === 'hide') {
+    } else if (key === 'hide') {
       this.circleComponent.setHidden(value as boolean);
     }
+
+    this.state[key] = result;
   }
 }

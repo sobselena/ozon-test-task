@@ -3,6 +3,7 @@ import { Component } from '../../../../../utils';
 import { InputField } from '../../../../../components/input-field';
 import { Toggle } from '../../../../../components/toggle';
 import './parameter.scss';
+import { MAX_VALUE, MIN_VALUE } from '../../constants/parameters';
 
 export class Parameter extends Component {
   private parametersProps: ParametersType;
@@ -44,17 +45,20 @@ export class Parameter extends Component {
       classes: ['params__input'],
       type: 'number',
       value: stateValue.toString(),
-      min: '0',
-      max: '100',
+      min: MIN_VALUE.toString(),
+      max: MAX_VALUE.toString(),
     });
 
     component.addListener('input', (event: Event) => {
-      const value = Number((event.target as HTMLInputElement).value);
+      let value = Number((event.target as HTMLInputElement).value);
       if (!isNaN(value)) {
+        value = Math.max(MIN_VALUE, Math.min(MAX_VALUE, value));
+        (event.target as HTMLInputElement).value = value.toString();
         this.parametersProps.stateValue = value;
         this.parametersProps.onAction(value);
       }
     });
+
     return component;
   }
 

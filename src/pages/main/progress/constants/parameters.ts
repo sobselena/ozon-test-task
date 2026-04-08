@@ -1,5 +1,3 @@
-import { InputField } from '../../../../components/input-field';
-import { Toggle } from '../../../../components/toggle';
 import type { ParametersType } from '../types';
 
 export const parameters: Omit<ParametersType, 'onAction' | 'stateValue'>[] = [
@@ -20,7 +18,5 @@ export const parameters: Omit<ParametersType, 'onAction' | 'stateValue'>[] = [
   },
 ];
 
-export const componentMap = {
-  input: InputField,
-  toggle: Toggle,
-};
+export const MIN_VALUE = 0;
+export const MAX_VALUE = 100;
