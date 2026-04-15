@@ -21,8 +21,10 @@
   .progress {
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-    align-content: start;
-    justify-items: start;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
 
     width: 568px;
     height: 290px;
